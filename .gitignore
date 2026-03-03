@@ -1,0 +1,14 @@
+# Large media files
+*.mp4
+*.zip
+*.docx
+*.xlsx
+aarthi (2).png
+S-TechAsset 3Dhoop Logo.png
+S-TechAsset 4Dhoop Logo.png
+
+# Template files
+Plumbero-Restoration-Company-115609085/
+
+# Claude Code internals
+.claude/
