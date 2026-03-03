@@ -334,7 +334,7 @@
         .hero__speakers-visual {
             position: relative;
             height: 760px;
-            margin-right: -90px;
+            margin-right: -20px;
         }
         /* Warm amber glow behind speakers */
         .hero__speakers-visual::before {
@@ -1391,23 +1391,55 @@
         .modal__close:hover { opacity: 1; }
 
         /* ── Testimonials ── */
-        .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 44px; }
+        .results__highlight {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, rgba(46,173,92,0.10), rgba(46,173,92,0.04));
+            border: 1px solid rgba(46,173,92,0.18);
+            border-radius: 50px; padding: 8px 22px 8px 14px;
+            margin-top: 4px; margin-bottom: 8px;
+        }
+        .results__highlight-icon {
+            display: flex; align-items: center; justify-content: center;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--accent-green); color: #fff; font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .results__highlight-text {
+            font-size: 0.92rem; font-weight: 700; color: var(--accent-green);
+            letter-spacing: 0.01em;
+        }
+        .test-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 44px; }
         .test-card {
-            background: var(--white); border: 1px solid var(--gray-100); border-radius: 10px;
-            padding: 22px 20px; transition: all 0.3s;
+            background: var(--white); border: 1px solid var(--gray-100); border-radius: 14px;
+            padding: 24px 22px; transition: all 0.3s; position: relative;
         }
-        .test-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .test-card--featured { border-color: var(--primary); background: linear-gradient(135deg, var(--primary-light), var(--white)); }
+        .test-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .test-card--featured {
+            border-color: var(--accent-green); border-width: 2px;
+            background: linear-gradient(145deg, rgba(46,173,92,0.06), var(--white));
+            grid-column: span 2; grid-row: span 2;
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 32px 28px;
+        }
+        .test-card--featured .test-card__name { font-size: 1.1rem; }
+        .test-card--featured .test-card__score { font-size: 0.78rem; padding: 5px 14px; }
+        .test-card--featured .test-card__result { font-size: 1.05rem; margin-bottom: 4px; }
         .test-card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .test-card__name { font-weight: 600; font-size: 0.9rem; color: var(--charcoal); }
-        .test-card__score { font-size: 0.68rem; font-weight: 800; color: #fff; background: var(--accent-green); padding: 4px 11px; border-radius: 5px; letter-spacing: 0.02em; }
-        .test-card__result { font-size: 0.82rem; font-weight: 600; color: var(--accent-green); margin-bottom: 6px; }
-        .test-card__link {
-            display: inline-flex; align-items: center; gap: 4px;
-            font-size: 0.7rem; font-weight: 600; color: var(--gray-400); text-decoration: none;
+        .test-card__name { font-weight: 700; font-size: 0.9rem; color: var(--charcoal); }
+        .test-card__score {
+            font-size: 0.68rem; font-weight: 800; color: #fff;
+            background: linear-gradient(135deg, #2EAD5C, #22934D);
+            padding: 4px 12px; border-radius: 6px; letter-spacing: 0.02em;
+            box-shadow: 0 2px 6px rgba(46,173,92,0.25);
         }
-        .test-card__link:hover { color: var(--blue); }
-        .test-card__link svg { width: 13px; height: 13px; }
+        .test-card__result { font-size: 0.82rem; font-weight: 700; color: var(--accent-green); margin-bottom: 6px; }
+        .test-card__link {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 0.72rem; font-weight: 600; color: var(--gray-400); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .test-card__link:hover { color: #0A66C2; }
+        .test-card__link svg { width: 14px; height: 14px; }
 
         /* ── Career ── */
         .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 44px; }
@@ -1720,12 +1752,14 @@
         /* ── Responsive — Tablet ── */
         @media (max-width: 1024px) and (min-width: 769px) {
             .hero__inner { max-width: 100%; padding: 0 32px; gap: 0; }
-            .hero__speakers-visual { height: 580px; margin-right: -40px; }
+            .hero__speakers-visual { height: 580px; margin-right: 0; }
             .hero__title { font-size: clamp(2.2rem, 4vw, 3rem); }
             .hero__speaker-badge { display: none; }
             .hero::after { display: none; }
             .speakers__grid { gap: 20px; }
             .speaker__photo { height: 240px; }
+            .test-grid { grid-template-columns: repeat(2,1fr); }
+            .test-card--featured { grid-column: span 2; grid-row: span 1; }
         }
 
         /* ── Responsive — Mobile ── */
@@ -1839,6 +1873,9 @@
             /* Video & Testimonial grids */
             .video-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
             .test-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+            .test-card--featured { grid-column: span 1; grid-row: span 1; padding: 24px 20px; }
+            .test-card--featured .test-card__name { font-size: 0.95rem; }
+            .test-card--featured .test-card__result { font-size: 0.9rem; }
 
             /* Stats */
             .stats-bar { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -2424,7 +2461,6 @@
             <div class="agenda__panel active" data-panel="0" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="01">
-                        <p class="agenda__num">Session 01</p>
                         <h3 class="agenda__title">ISB Complete Game Plan (From the Inside)</h3>
                         <ul class="agenda__list">
                             <li>What ISB truly values beyond buzzwords</li>
@@ -2439,7 +2475,6 @@
             <div class="agenda__panel" data-panel="1" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="02">
-                        <p class="agenda__num">Session 02</p>
                         <h3 class="agenda__title">Ask ISB - Direct, Unfiltered</h3>
                         <ul class="agenda__list">
                             <li>Live interaction with ISB leadership</li>
@@ -2455,7 +2490,6 @@
             <div class="agenda__panel" data-panel="2" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="03">
-                        <p class="agenda__num">Session 03</p>
                         <h3 class="agenda__title">100% Scholarship Blueprint</h3>
                         <ul class="agenda__list">
                             <li>What separates partial from full scholarship candidates</li>
@@ -2470,7 +2504,6 @@
             <div class="agenda__panel" data-panel="3" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="04">
-                        <p class="agenda__num">Session 04</p>
                         <h3 class="agenda__title">The GMAT Breakdown - By The Numbers</h3>
                         <ul class="agenda__list">
                             <li>What percentile actually makes you safe for ISB</li>
@@ -2485,7 +2518,6 @@
             <div class="agenda__panel" data-panel="4" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="05">
-                        <p class="agenda__num">Session 05</p>
                         <h3 class="agenda__title">The Fastest Path to 100%ile</h3>
                         <ul class="agenda__list">
                             <li>Why 12-month preparation is a myth</li>
@@ -2546,110 +2578,29 @@
     </div>
 </section>
 
-<!-- ═══ SCHOLARSHIP SHOWCASE ═══ -->
-<section class="section" id="scholars" style="background:#f0f2f7;">
+<!-- ═══ PROVEN RESULTS ═══ -->
+<section class="section section--cream" id="results">
     <div class="container">
         <div class="text-center fade-up">
-            <p class="section__label">More Testimonials</p>
-            <h2 class="section__title">Not just Aarthi, many students from TOP have cracked ISB with a scholarship.</h2>
+            <p class="section__label">Proven Results</p>
+            <h2 class="section__title">2000+ students have secured admission to ISB from Top One Percent</h2>
+            <div class="results__highlight">
+                <span class="results__highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="results__highlight-text">Many with full &amp; partial scholarships</span>
+            </div>
         </div>
-        <div class="bento fade-up stagger-children">
-
-            <!-- Aarthi — featured large card with quote -->
-            <div class="bento__card bento__card--span2c" style="background:linear-gradient(135deg, var(--primary-light), #fff);">
-                <span class="bento__quote">&ldquo;</span>
-                <div style="padding-top:12px;">
-                    <span class="bento__gmat" style="display:block;width:fit-content;">GMAT 100%ile</span>
-                    <div class="bento__scholarship">100% Scholarship</div>
-                    <p class="bento__text">She doesn't have to pay even one rupee! The Indian School of Business has reduced the fee for its flagship program (PGP) to ZERO - including accommodation.</p>
-                    <div class="bento__person">
-                        <img class="bento__avatar" src="aarthi (2).png" alt="Aarthi M." style="object-position:top;" onerror="this.outerHTML='<div class=\'bento__avatar bento__avatar--initials\'>A</div>';">
-                        <div>
-                            <div class="bento__name">Aarthi M.</div>
-                            <div class="bento__role">100% Scholarship</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Muskan — photo card -->
-            <div class="bento__card bento__card--photo">
-                <img class="bento__img" src="More testimonial/Muskan.jpg" alt="Muskan A.">
-                <div class="bento__body">
-                    <div class="bento__name">Muskan A.</div>
-                    <div class="bento__role">75% Scholarship</div>
-                    <span class="bento__gmat" style="margin-top:8px;">GMAT 100th %ile</span>
-                </div>
-            </div>
-
-            <!-- Shiban — quote card -->
-            <div class="bento__card">
-                <p class="bento__highlight">50% Scholarship</p>
-                <p class="bento__text">Cracked ISB with a 50% scholarship at the 98th percentile GMAT score. The structured approach from Top One Percent made all the difference in my preparation journey.</p>
-                <div class="bento__person">
-                    <img class="bento__avatar" src="More testimonial/Shiban.jpg" alt="Shiban H.">
-                    <div>
-                        <div class="bento__name">Shiban H.</div>
-                        <div class="bento__role">GMAT 98th %ile</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Prashant — quote card -->
-            <div class="bento__card">
-                <span class="bento__quote">&ldquo;</span>
-                <div style="padding-top:12px;">
-                    <span class="bento__gmat">GMAT 96th %ile</span>
-                    <p class="bento__text" style="margin-top:6px;">Sandeep Sir's strategy helped me score in the 96th percentile and build a winning application.</p>
-                    <div class="bento__person">
-                        <img class="bento__avatar" src="More testimonial/Prashant.jpg" alt="Prashant S.">
-                        <div>
-                            <div class="bento__name">Prashant S.</div>
-                            <div class="bento__role">GMAT 96th %ile</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mayank — photo card -->
-            <div class="bento__card bento__card--photo">
-                <div style="position:relative;height:160px;overflow:hidden;border-radius:16px 16px 0 0;background:radial-gradient(ellipse at 50% 30%, #1a6fb5 0%, #0d4a7a 40%, #062d4f 100%);">
-                    <img class="bento__img" src="Speakers/Mayank S.png" alt="Mayank S." style="height:100%;object-fit:contain;object-position:bottom center;border-radius:0;">
-                </div>
-                <div class="bento__body">
-                    <div class="bento__name">Mayank S.</div>
-                    <div class="bento__role">GMAT 97th %ile</div>
-                    <span class="bento__gmat" style="margin-top:8px;">GMAT 97th %ile</span>
-                </div>
-            </div>
-
-            <!-- Aditi — wide card -->
-            <div class="bento__card">
-                <span class="bento__quote" style="right:14px;left:auto;">&rdquo;</span>
-                <p class="bento__highlight">GMAT 97th %ile</p>
-                <p class="bento__text">From a 600-level diagnostic to a 97th percentile final score - Top One Percent completely transformed my GMAT prep and application.</p>
-                <div class="bento__person">
-                    <img class="bento__avatar" src="More testimonial/Aditi Mishra.png" alt="Aditi M.">
-                    <div>
-                        <div class="bento__name">Aditi M.</div>
-                        <div class="bento__role">GMAT 97th %ile</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Aparna — quote card -->
-            <div class="bento__card">
-                <span class="bento__gmat">GMAT 94th %ile</span>
-                <p class="bento__text" style="margin-top:6px;">Secured admission to ISB through Top One Percent's guidance. The personalized mentoring and mock interviews gave me the confidence to ace every round.</p>
-                <div class="bento__person">
-                    <img class="bento__avatar" src="More testimonial/Aparna.jpg" alt="Aparna K.">
-                    <div>
-                        <div class="bento__name">Aparna K.</div>
-                        <div class="bento__role">GMAT 94th %ile</div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="test-grid fade-up stagger-children">
+            <div class="test-card test-card--featured"><div class="test-card__top"><span class="test-card__name">Aarthi Muthiah</span><span class="test-card__score">GMAT 770</span></div><p class="test-card__result">ISB + 100% Scholarship</p><p style="font-size:0.8rem;color:var(--gray-500);margin-bottom:8px;">Tuition + accommodation. PGP fees = zero.</p><a href="https://in.linkedin.com/in/aarthi-muthiah-64415b179" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify on LinkedIn</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Muskan A.</span><span class="test-card__score">GMAT 100th %ile</span></div><p class="test-card__result">ISB + 75% Scholarship</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Soham Sengupta</span><span class="test-card__score">GMAT 780</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/soham-sengupta-74987b175" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Manan Jain</span><span class="test-card__score">GMAT 760</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/manan-jain-559b3599/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Drona Nawal</span><span class="test-card__score">GMAT 740</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/drona-nawal-b50a21124/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Shiban Hassan Quasmi</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB + 50% Scholarship</p><a href="https://www.linkedin.com/in/shiban-hassan2001" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Tushar Bansal</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/tushar-iitdelhi" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Prashant S.</span><span class="test-card__score">GMAT 96th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Mayank S.</span><span class="test-card__score">GMAT 97th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Aditi M.</span><span class="test-card__score">GMAT 97th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Aparna K.</span><span class="test-card__score">GMAT 94th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
         </div>
     </div>
 </section>
@@ -2742,24 +2693,6 @@
         </div>
     </div>
 </div>
-
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="section section--cream" id="results">
-    <div class="container">
-        <div class="text-center fade-up">
-            <p class="section__label">Proven Results</p>
-            <h2 class="section__title">Real admits. Real scores.</h2>
-        </div>
-        <div class="test-grid fade-up stagger-children">
-            <div class="test-card test-card--featured"><div class="test-card__top"><span class="test-card__name">Aarthi Muthiah</span><span class="test-card__score">GMAT 770</span></div><p class="test-card__result">ISB + 100% Scholarship</p><p style="font-size:0.8rem;color:var(--gray-500);margin-bottom:8px;">Tuition + accommodation. PGP fees = zero.</p><a href="https://in.linkedin.com/in/aarthi-muthiah-64415b179" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify on LinkedIn</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Soham Sengupta</span><span class="test-card__score">GMAT 780</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/soham-sengupta-74987b175" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Manan Jain</span><span class="test-card__score">GMAT 760</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/manan-jain-559b3599/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Drona Nawal</span><span class="test-card__score">GMAT 740</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/drona-nawal-b50a21124/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Shiban Hassan Quasmi</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB + 50% Scholarship</p><a href="https://www.linkedin.com/in/shiban-hassan2001" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Tushar Bansal</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/tushar-iitdelhi" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-        </div>
-    </div>
-</section>
 
 <!-- ═══ CAREER PROOF ═══ -->
 <section class="career" id="career">
