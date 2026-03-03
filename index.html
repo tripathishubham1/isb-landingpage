@@ -1718,17 +1718,69 @@
         .sticky-desktop__seats strong { color: var(--accent-red); }
 
         /* ── Animations ── */
-        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+        /* Base reveal */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+        /* Slide from left */
+        .slide-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+        /* Slide from right */
+        .slide-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+        /* Scale up from center */
+        .scale-in { opacity: 0; transform: scale(0.92); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+
+        /* Blur-in reveal */
+        .blur-in { opacity: 0; filter: blur(8px); transform: translateY(10px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .blur-in.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
+
+        /* Stagger children */
         .stagger-children > *:nth-child(1) { transition-delay: 0s; }
-        .stagger-children > *:nth-child(2) { transition-delay: 0.08s; }
-        .stagger-children > *:nth-child(3) { transition-delay: 0.16s; }
-        .stagger-children > *:nth-child(4) { transition-delay: 0.24s; }
-        .stagger-children > *:nth-child(5) { transition-delay: 0.32s; }
-        .stagger-children > *:nth-child(6) { transition-delay: 0.4s; }
-        .stagger-children > * { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .stagger-children > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger-children > *:nth-child(3) { transition-delay: 0.2s; }
+        .stagger-children > *:nth-child(4) { transition-delay: 0.25s; }
+        .stagger-children > *:nth-child(5) { transition-delay: 0.3s; }
+        .stagger-children > *:nth-child(6) { transition-delay: 0.35s; }
+        .stagger-children > *:nth-child(7) { transition-delay: 0.4s; }
+        .stagger-children > *:nth-child(8) { transition-delay: 0.45s; }
+        .stagger-children > *:nth-child(9) { transition-delay: 0.5s; }
+        .stagger-children > *:nth-child(10) { transition-delay: 0.55s; }
+        .stagger-children > *:nth-child(11) { transition-delay: 0.6s; }
+        .stagger-children > *:nth-child(12) { transition-delay: 0.65s; }
+        .stagger-children > * { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
         .stagger-children.visible > * { opacity: 1; transform: translateY(0); }
+
+        /* Delay modifiers */
+        .anim-delay-1 { transition-delay: 0.15s !important; }
+        .anim-delay-2 { transition-delay: 0.3s !important; }
+        .anim-delay-3 { transition-delay: 0.45s !important; }
+
+        /* Hero entrance */
+        .hero__content { opacity: 0; transform: translateY(30px); animation: heroEnter 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; }
+        .hero__speakers-visual { opacity: 0; transform: translateX(30px); animation: heroVisualEnter 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards; }
+        .hero__trust { opacity: 0; transform: translateY(15px); animation: heroEnter 0.7s cubic-bezier(0.16,1,0.3,1) 0.8s forwards; }
+        @keyframes heroEnter { to { opacity: 1; transform: translateY(0); } }
+        @keyframes heroVisualEnter { to { opacity: 1; transform: translateX(0); } }
+
+        /* Section label animated underline */
+        .section__label { position: relative; display: inline-block; }
+
+        /* Campus strip reveal */
+        .campus-strip { opacity: 0; transition: opacity 0.8s ease; }
+        .campus-strip.visible { opacity: 1; }
+        .campus-strip .campus-strip__cell { opacity: 0; transform: scale(1.05); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .campus-strip.visible .campus-strip__cell:nth-child(1) { opacity: 1; transform: scale(1); transition-delay: 0.1s; }
+        .campus-strip.visible .campus-strip__cell:nth-child(2) { opacity: 1; transform: scale(1); transition-delay: 0.2s; }
+        .campus-strip.visible .campus-strip__cell:nth-child(3) { opacity: 1; transform: scale(1); transition-delay: 0.3s; }
+        .campus-strip.visible .campus-strip__cell:nth-child(4) { opacity: 1; transform: scale(1); transition-delay: 0.4s; }
+
+        /* CTA banner slide-in */
+        .cta-banner { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+        .cta-banner.visible { opacity: 1; transform: translateY(0); }
 
         .count-up { display: inline-block; }
 
@@ -2183,7 +2235,7 @@
         /* ── Reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-            .fade-up, .stagger-children > * { opacity: 1 !important; transform: none !important; }
+            .fade-up, .slide-left, .slide-right, .scale-in, .blur-in, .stagger-children > *, .campus-strip, .campus-strip .campus-strip__cell, .cta-banner, .hero__content, .hero__speakers-visual, .hero__trust { opacity: 1 !important; transform: none !important; filter: none !important; }
         }
     </style>
 </head>
@@ -2336,7 +2388,7 @@
 <!-- ═══ SPEAKERS ═══ -->
 <section class="section section--speakers" id="speakers">
     <div class="container">
-        <div class="text-center fade-up">
+        <div class="text-center blur-in">
             <p class="section__label">Featuring</p>
             <h2 class="section__title">The Trinity</h2>
             <p class="section__sub" style="margin:0 auto;">Director of Admissions, Indian School of Business. Director, Graduate Management Admission Council (GMAC). Asia's Foremost GMAT Trainer.</p>
@@ -2431,11 +2483,11 @@
 <!-- ═══ AGENDA ═══ -->
 <section class="section section--agenda" id="agenda">
     <div class="container">
-        <div class="text-center fade-up">
+        <div class="text-center blur-in">
             <p class="section__label">The Agenda</p>
             <h2 class="section__title">For serious ISB aspirants.</h2>
         </div>
-        <div class="agenda__tabs fade-up" role="tablist">
+        <div class="agenda__tabs slide-left" role="tablist">
             <button class="agenda__tab active" data-tab="0" role="tab" aria-selected="true">
                 <span class="agenda__tab-num">01</span>
                 <span class="agenda__tab-label">Game Plan</span>
@@ -2457,7 +2509,7 @@
                 <span class="agenda__tab-label">100%ile Path</span>
             </button>
         </div>
-        <div class="agenda__panels fade-up">
+        <div class="agenda__panels scale-in">
             <div class="agenda__panel active" data-panel="0" role="tabpanel">
                 <div class="agenda__panel-inner">
                     <div class="agenda__content" data-num="01">
@@ -2536,12 +2588,12 @@
 <!-- ═══ SCHOLARSHIP ═══ -->
 <section class="section section--scholarship" id="scholarship">
     <div class="container">
-        <div class="fade-up">
+        <div class="slide-left">
             <p class="section__label">The Scholarship Angle</p>
             <h2 class="section__title">SAVE more than INR 45,00,000 just by scoring in the 99th percentile</h2>
             <p class="section__sub">100% scholarship to India's Number 1 B-school (Even accommodation covered)</p>
         </div>
-        <div class="scholarship__card fade-up">
+        <div class="scholarship__card scale-in anim-delay-1">
             <div class="scholarship__body">
                 <h3 class="scholarship__amount"><span class="scholarship__amount-highlight">&#8377;45,00,000+</span> saved</h3>
                 <p class="scholarship__detail">For our student Aarthi Muthiah, the Indian School of Business has reduced the fee for its flagship program (PGP) to <strong style="color:#fff;">ZERO</strong>.</p>
@@ -2581,7 +2633,7 @@
 <!-- ═══ PROVEN RESULTS ═══ -->
 <section class="section section--cream" id="results">
     <div class="container">
-        <div class="text-center fade-up">
+        <div class="text-center blur-in">
             <p class="section__label">Proven Results</p>
             <h2 class="section__title">2000+ students have secured admission to ISB from Top One Percent</h2>
             <div class="results__highlight">
@@ -2589,7 +2641,7 @@
                 <span class="results__highlight-text">Many with full &amp; partial scholarships</span>
             </div>
         </div>
-        <div class="test-grid fade-up stagger-children">
+        <div class="test-grid scale-in stagger-children">
             <div class="test-card test-card--featured"><div class="test-card__top"><span class="test-card__name">Aarthi Muthiah</span><span class="test-card__score">GMAT 770</span></div><p class="test-card__result">ISB + 100% Scholarship</p><p style="font-size:0.8rem;color:var(--gray-500);margin-bottom:8px;">Tuition + accommodation. PGP fees = zero.</p><a href="https://in.linkedin.com/in/aarthi-muthiah-64415b179" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify on LinkedIn</a></div>
             <div class="test-card"><div class="test-card__top"><span class="test-card__name">Muskan A.</span><span class="test-card__score">GMAT 100th %ile</span></div><p class="test-card__result">ISB + 75% Scholarship</p></div>
             <div class="test-card"><div class="test-card__top"><span class="test-card__name">Soham Sengupta</span><span class="test-card__score">GMAT 780</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/soham-sengupta-74987b175" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
@@ -2616,7 +2668,7 @@
 <!-- ═══ VIDEO TESTIMONIALS ═══ -->
 <section class="section" id="videos">
     <div class="container">
-        <div class="text-center fade-up">
+        <div class="text-center blur-in">
             <p class="section__label">Student Stories</p>
             <h2 class="section__title">Hear it from ISB admits. In their own words.</h2>
         </div>
@@ -2697,7 +2749,7 @@
 <!-- ═══ CAREER PROOF ═══ -->
 <section class="career" id="career">
     <div class="container">
-        <div class="career__header fade-up">
+        <div class="career__header blur-in">
             <p class="career__label">They're absolutely killing it.</p>
             <h2 class="career__title">How will ISB secure your career<br>and get you a 10x LEAP?</h2>
             <p class="career__sub">We tracked some of our ISB admits from 2011 to 2024. And here's what we found&hellip; From Google and Microsoft to Unilever and Adobe&hellip; From Product Managers to Founders, VPs to National Heads, Directors at Fortune 500s&hellip;</p>
@@ -2706,7 +2758,7 @@
     </div>
 
     <!-- Marquee sits outside container so it spans full width -->
-    <div class="career__marquee-wrap fade-up">
+    <div class="career__marquee-wrap scale-in">
             <!-- Row 1 scrolls left -->
             <div class="career__row">
                 <div class="career__card"><div class="career__card-top"><div class="career__company"><img src="Logos/Google.png" alt="Google" style="transform:scale(1.5)"></div><div class="career__batch">ISB &rsquo;11</div></div><div class="career__card-bottom"><div class="career__avatar">A</div><div><div class="career__name">Anish</div><div class="career__role">Head of SEA, Strategic Partnerships</div></div></div></div>
@@ -2750,11 +2802,11 @@
 <!-- ═══ WHO SHOULD ATTEND ═══ -->
 <section class="section" id="audience">
     <div class="container">
-        <div class="text-center fade-up">
+        <div class="text-center blur-in">
             <p class="section__label">Who Should Attend</p>
             <h2 class="section__title">Who Should Attend?</h2>
         </div>
-        <div class="audience__grid fade-up">
+        <div class="audience__grid slide-left stagger-children">
             <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Final year undergrads targeting ISB</div></div>
             <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Young professionals (0&ndash;5 years experience)</div></div>
             <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Consultants, Analysts, Founders</div></div>
@@ -2766,8 +2818,8 @@
 <!-- ═══ FAQ ═══ -->
 <section class="section section--cream" id="faq">
     <div class="container">
-        <div class="text-center fade-up"><p class="section__label">FAQ</p><h2 class="section__title">Still thinking it over?</h2></div>
-        <div class="faq__list fade-up">
+        <div class="text-center blur-in"><p class="section__label">FAQ</p><h2 class="section__title">Still thinking it over?</h2></div>
+        <div class="faq__list fade-up stagger-children">
             <div class="faq__item"><button class="faq__q">Is this just another generic MBA webinar?<svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq__a"><div class="faq__a-inner">No. This features the actual Director of Admissions from ISB, the Director from GMAC, and Asia's foremost GMAT trainer. Operational intelligence from the people who run the system.</div></div></div>
             <div class="faq__item"><button class="faq__q">I'm in my final year. Is ISB realistic for me?<svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq__a"><div class="faq__a-inner">Yes. ISB's YLP and Deferred Admission tracks are designed for final-year undergraduates. This session covers which path fits your profile.</div></div></div>
             <div class="faq__item"><button class="faq__q">My GMAT score isn't that high. Should I still attend?<svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq__a"><div class="faq__a-inner">Absolutely. Students with 675 have been admitted to ISB. This session teaches the score + story + positioning formula. Plus, the 90-day framework can radically improve your GMAT.</div></div></div>
@@ -2780,7 +2832,7 @@
 <!-- ═══ FINAL CTA ═══ -->
 <section class="final-cta" id="register">
     <div class="container">
-        <div class="final-cta__inner fade-up">
+        <div class="final-cta__inner blur-in">
             <p class="section__label">Meet ISB</p>
             <h2 class="final-cta__title">
                 The RIGHT Application.<br>The RIGHT GMAT Score.<br>The RIGHT Strategy.
@@ -2895,7 +2947,7 @@
             }
         });
     },{threshold:0.08, rootMargin:'0px 0px -30px 0px'});
-    document.querySelectorAll('.fade-up, .stagger-children').forEach(el=>io.observe(el));
+    document.querySelectorAll('.fade-up, .slide-left, .slide-right, .scale-in, .blur-in, .stagger-children, .campus-strip, .cta-banner').forEach(el=>io.observe(el));
 
 
     // ── Navbar shadow + progress bar ──
@@ -3046,16 +3098,23 @@
 
     // ── Prefers reduced motion ──
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-        document.querySelectorAll('.fade-up, .stagger-children > *').forEach(el=>{
+        document.querySelectorAll('.fade-up, .slide-left, .slide-right, .scale-in, .blur-in, .stagger-children > *, .campus-strip, .cta-banner').forEach(el=>{
             el.style.transition = 'none';
+            el.style.animation = 'none';
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+            el.style.filter = 'none';
+        });
+        document.querySelectorAll('.hero__content, .hero__speakers-visual, .hero__trust').forEach(el=>{
+            el.style.animation = 'none';
             el.style.opacity = '1';
             el.style.transform = 'none';
         });
     }
 
-    // ── Safety: force-reveal any remaining hidden fade-up elements after 4s ──
+    // ── Safety: force-reveal any remaining hidden elements after 4s ──
     setTimeout(()=>{
-        document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>{
+        document.querySelectorAll('.fade-up:not(.visible), .slide-left:not(.visible), .slide-right:not(.visible), .scale-in:not(.visible), .blur-in:not(.visible), .campus-strip:not(.visible), .cta-banner:not(.visible)').forEach(el=>{
             el.classList.add('visible');
         });
     }, 4000);
