@@ -1081,8 +1081,8 @@
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: top center;
+            object-fit: contain;
+            object-position: bottom center;
             filter: drop-shadow(0 12px 40px rgba(0,0,0,0.35));
             z-index: 1;
         }
@@ -1762,7 +1762,7 @@
             .hero__badge-icon svg { width: 15px; height: 15px; }
             .hero__badge-text span:first-child { font-size: 0.64rem; }
             .hero__badge-text span:last-child { font-size: 0.58rem; }
-            .hero__title { font-size: clamp(1.8rem, 7vw, 2.4rem); margin-bottom: 16px; }
+            .hero__title { font-size: clamp(2.2rem, 8.5vw, 2.8rem); font-weight: 700; margin-bottom: 16px; }
             .hero__sub { margin-left: auto; margin-right: auto; font-size: 0.88rem; margin-bottom: 28px; }
             .hero__cta-block { margin: 0 auto; max-width: 340px; padding: 16px 20px; animation: none; border-radius: 12px; }
             .hero__seats-line { justify-content: center; max-width: 340px; margin-left: auto; margin-right: auto; }
@@ -1816,7 +1816,7 @@
             /* Scholarship */
             .scholarship__card { grid-template-columns: 1fr; }
             .scholarship__body { padding: 24px 20px; }
-            .scholarship__visual { min-height: 320px; max-height: none; height: 320px; }
+            .scholarship__visual { min-height: 400px; max-height: none; height: 400px; }
             .scholarship__proof { left: 10px; bottom: 12px; min-width: auto; padding: 14px 16px; }
             .scholarship__stats { gap: 14px; flex-wrap: wrap; }
 
@@ -1905,7 +1905,7 @@
             .hero__badge-icon svg { width: 13px; height: 13px; }
             .hero__badge-text span:first-child { font-size: 0.6rem; }
             .hero__badge-text span:last-child { font-size: 0.54rem; }
-            .hero__title { font-size: clamp(1.55rem, 7vw, 2rem); }
+            .hero__title { font-size: clamp(2rem, 8.5vw, 2.6rem); font-weight: 700; }
             .hero__sub { font-size: 0.84rem; margin-bottom: 24px; }
             .hero__cta-block { padding: 14px 16px; }
             .hero__cta-text span:first-child { font-size: 0.84rem; }
@@ -1929,7 +1929,7 @@
 
             /* Scholarship */
             .scholarship__body { padding: 20px 16px; }
-            .scholarship__visual { min-height: 280px; max-height: none; height: 280px; }
+            .scholarship__visual { min-height: 360px; max-height: none; height: 360px; }
 
             /* Bento */
             .bento__card { padding: 14px 12px; }
@@ -1954,7 +1954,7 @@
         /* ── Responsive — Extra Small (360px and below) ── */
         @media (max-width: 360px) {
             .container { padding: 0 12px; }
-            .hero__title { font-size: 1.45rem; }
+            .hero__title { font-size: 1.9rem; }
             .hero__badges { flex-direction: column; align-items: center; gap: 6px; }
             .hero__speakers-visual { height: 220px; }
             .hero__cta-block { max-width: 100%; }
