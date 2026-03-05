@@ -1453,35 +1453,21 @@
         .test-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 44px; }
         .test-card {
             background: var(--white); border: 1px solid var(--gray-100); border-radius: 14px;
-            padding: 24px 22px; transition: all 0.3s; position: relative;
+            padding: 20px; transition: all 0.3s; position: relative;
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
         }
         .test-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
-        .test-card--featured {
-            border-color: var(--accent-green); border-width: 2px;
-            background: linear-gradient(145deg, rgba(46,173,92,0.06), var(--white));
-            grid-column: span 2; grid-row: span 2;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 32px 28px;
-        }
-        .test-card--featured .test-card__name { font-size: 1.1rem; }
-        .test-card--featured .test-card__score { font-size: 0.78rem; padding: 5px 14px; }
-        .test-card--featured .test-card__result { font-size: 1.05rem; margin-bottom: 4px; }
-        .test-card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .test-card__name { font-weight: 700; font-size: 0.9rem; color: var(--charcoal); }
+        .test-card__top { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 10px; width: 100%; }
+        .test-card__name { font-weight: 700; font-size: 0.88rem; color: var(--charcoal); line-height: 1.3; }
         .test-card__score {
-            font-size: 0.68rem; font-weight: 800; color: #fff;
+            font-size: 0.7rem; font-weight: 800; color: #fff;
             background: linear-gradient(135deg, #2EAD5C, #22934D);
-            padding: 4px 12px; border-radius: 6px; letter-spacing: 0.02em;
+            padding: 5px 14px; border-radius: 6px; letter-spacing: 0.02em;
             box-shadow: 0 2px 6px rgba(46,173,92,0.25);
+            white-space: nowrap;
         }
-        .test-card__result { font-size: 0.82rem; font-weight: 700; color: var(--accent-green); margin-bottom: 6px; }
-        .test-card__link {
-            display: inline-flex; align-items: center; gap: 5px;
-            font-size: 0.72rem; font-weight: 600; color: var(--gray-400); text-decoration: none;
-            transition: color 0.2s;
-        }
-        .test-card__link:hover { color: #0A66C2; }
-        .test-card__link svg { width: 14px; height: 14px; }
+        .test-card__result { font-size: 0.78rem; font-weight: 700; color: var(--accent-green); }
 
         /* ── Career ── */
         .stats-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 44px; }
@@ -1853,8 +1839,7 @@
             .hero::after { display: none; }
             .speakers__grid { gap: 20px; }
             .speaker__photo { height: 240px; }
-            .test-grid { grid-template-columns: repeat(2,1fr); }
-            .test-card--featured { grid-column: span 2; grid-row: span 1; }
+            .test-grid { grid-template-columns: repeat(3,1fr); }
         }
 
         /* ── Responsive — Mobile ── */
@@ -1967,10 +1952,7 @@
 
             /* Video & Testimonial grids */
             .video-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-            .test-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
-            .test-card--featured { grid-column: span 1; grid-row: span 1; padding: 24px 20px; }
-            .test-card--featured .test-card__name { font-size: 0.95rem; }
-            .test-card--featured .test-card__result { font-size: 0.9rem; }
+            .test-grid { grid-template-columns: repeat(2,1fr); }
 
             /* Stats */
             .stats-bar { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -2180,14 +2162,17 @@
             color: rgba(255,255,255,0.25); pointer-events: none; transition: color 0.2s;
         }
         .reg-modal__input-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-        .reg-modal__field input {
+        .reg-modal__field input,
+        .reg-modal__field textarea {
             width: 100%; padding: 13px 14px 13px 42px; font-size: 0.88rem; font-family: var(--font-body);
             background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
             border-radius: 10px; color: #fff; outline: none;
             transition: all 0.25s;
         }
-        .reg-modal__field input::placeholder { color: rgba(255,255,255,0.2); }
-        .reg-modal__field input:focus {
+        .reg-modal__field input::placeholder,
+        .reg-modal__field textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .reg-modal__field input:focus,
+        .reg-modal__field textarea:focus {
             border-color: var(--primary);
             background: rgba(212,136,28,0.04);
             box-shadow: 0 0 0 3px rgba(212,136,28,0.1);
@@ -2359,7 +2344,7 @@
             <!-- Seats line -->
             <div class="hero__seats-line">
                 <span class="hero__seats-dot"></span>
-                <span class="hero__seats-info">Only 653 of 3,000 seats left</span>
+                <span class="hero__seats-info">Only 653 seats left</span>
                 <div class="hero__seats-bar">
                     <div class="hero__seats-fill" style="width:78%"></div>
                 </div>
@@ -2454,7 +2439,7 @@
                         <div class="speaker__org-badge">
                             <img src="https://prodcd.isb.edu/media/sdddpvbt/logo_blue.svg" alt="ISB">
                         </div>
-                        <a href="https://in.linkedin.com/showcase/isbadmissions/" target="_blank" rel="noopener" class="speaker__linkedin" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/priteshzaveri/" target="_blank" rel="noopener" class="speaker__linkedin" title="LinkedIn">
                             <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </a>
                     </div>
@@ -2462,7 +2447,7 @@
                 <div class="speaker__info">
                     <p class="speaker__org">Indian School of Business</p>
                     <h3 class="speaker__name">Pritesh Zaveri</h3>
-                    <p class="speaker__role">Director of Admissions, ISB</p>
+                    <p class="speaker__role">Higher Education Marketing &amp; Admissions Director, ISB</p>
                     <div class="speaker__quote">
                         <p>ISB is ranked #12 in the world and #1 in Asia. I firmly believe it is one of the most transformational spaces a professional can enter.</p>
                         <p>In this masterclass, I will answer every question you have, clear every doubt that's holding you back, and give you absolute clarity on how you can secure admission to India's finest business school.</p>
@@ -2498,7 +2483,7 @@
                         <div class="speaker__org-badge">
                             <img src="top-logo.png" alt="Top One Percent">
                         </div>
-                        <a href="https://in.linkedin.com/in/sandeep-gupta-gmat-800-gre-340" target="_blank" rel="noopener" class="speaker__linkedin" title="LinkedIn">
+                        <a href="https://www.linkedin.com/in/sandeep-gupta-cat-gmat-100-percentiles/" target="_blank" rel="noopener" class="speaker__linkedin" title="LinkedIn">
                             <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </a>
                     </div>
@@ -2506,7 +2491,7 @@
                 <div class="speaker__info">
                     <p class="speaker__org">Top One Percent</p>
                     <h3 class="speaker__name">Sandeep Gupta</h3>
-                    <p class="speaker__role">Asia's Foremost GMAT Trainer</p>
+                    <p class="speaker__role">Asia's Foremost GMAT Trainer | 2L+ success stories to top B-schools</p>
                     <div class="speaker__quote">
                         <p>The possibilities after a 100th percentile GMAT score are immense. Top B-schools don't just consider you, they chase you.</p>
                         <p>In this masterclass, I'm compressing 30 years of experience into one focused session to show you exactly what works and what doesn't.</p>
@@ -2638,6 +2623,22 @@
     </div>
 </section>
 
+<!-- ═══ WHO SHOULD ATTEND ═══ -->
+<section class="section section--cream" id="audience">
+    <div class="container">
+        <div class="text-center blur-in">
+            <p class="section__label">Who Should Attend</p>
+            <h2 class="section__title">Who Should Attend?</h2>
+        </div>
+        <div class="audience__grid slide-left stagger-children">
+            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Final year undergrads targeting ISB</div></div>
+            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Young professionals (0&ndash;5 years experience)</div></div>
+            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Consultants, Analysts, Founders</div></div>
+            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Anyone who refuses average</div></div>
+        </div>
+    </div>
+</section>
+
 <!-- ═══ SCHOLARSHIP ═══ -->
 <section class="section section--scholarship" id="scholarship">
     <div class="container">
@@ -2691,17 +2692,17 @@
             <h2 class="section__title">2000+ students have secured admission to ISB from Top One Percent</h2>
             <div class="results__highlight">
                 <span class="results__highlight-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg></span>
-                <span class="results__highlight-text">Many with full &amp; partial scholarships</span>
+                <span class="results__highlight-text">All verified ISB admits from Top One Percent</span>
             </div>
         </div>
         <div class="test-grid scale-in stagger-children">
-            <div class="test-card test-card--featured"><div class="test-card__top"><span class="test-card__name">Aarthi Muthiah</span><span class="test-card__score">GMAT 770</span></div><p class="test-card__result">ISB + 100% Scholarship</p><p style="font-size:0.8rem;color:var(--gray-500);margin-bottom:8px;">Tuition + accommodation. PGP fees = zero.</p><a href="https://in.linkedin.com/in/aarthi-muthiah-64415b179" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify on LinkedIn</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Muskan A.</span><span class="test-card__score">GMAT 100th %ile</span></div><p class="test-card__result">ISB + 75% Scholarship</p></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Soham Sengupta</span><span class="test-card__score">GMAT 780</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/soham-sengupta-74987b175" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Manan Jain</span><span class="test-card__score">GMAT 760</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/manan-jain-559b3599/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Drona Nawal</span><span class="test-card__score">GMAT 740</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/drona-nawal-b50a21124/" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Shiban Hassan Quasmi</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB + 50% Scholarship</p><a href="https://www.linkedin.com/in/shiban-hassan2001" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
-            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Tushar Bansal</span><span class="test-card__score">GMAT 705</span></div><p class="test-card__result">ISB Admit</p><a href="https://www.linkedin.com/in/tushar-iitdelhi" target="_blank" rel="noopener" class="test-card__link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>Verify</a></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Aarthi Muthiah</span><span class="test-card__score">GMAT 99th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Muskan A.</span><span class="test-card__score">GMAT 100th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Soham Sengupta</span><span class="test-card__score">GMAT 99th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Manan Jain</span><span class="test-card__score">GMAT 99th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Drona Nawal</span><span class="test-card__score">GMAT 97th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Shiban Hassan Quasmi</span><span class="test-card__score">GMAT 99th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
+            <div class="test-card"><div class="test-card__top"><span class="test-card__name">Tushar Bansal</span><span class="test-card__score">GMAT 99th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
             <div class="test-card"><div class="test-card__top"><span class="test-card__name">Prashant S.</span><span class="test-card__score">GMAT 96th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
             <div class="test-card"><div class="test-card__top"><span class="test-card__name">Mayank S.</span><span class="test-card__score">GMAT 97th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
             <div class="test-card"><div class="test-card__top"><span class="test-card__name">Aditi M.</span><span class="test-card__score">GMAT 97th %ile</span></div><p class="test-card__result">ISB Admit</p></div>
@@ -2713,29 +2714,10 @@
 <!-- ═══ CTA BANNER 2 ═══ -->
 <div class="cta-banner">
     <div class="container">
-        <p class="cta-banner__text">100% scholarship to India's Number 1 B-school. <strong>Even accommodation covered.</strong></p>
+        <p class="cta-banner__text">2000+ students admitted to India's #1 B-school through Top One Percent. <strong>Your turn next.</strong></p>
         <a href="#register" class="btn btn--white btn--pulse" data-reg>Reserve My Seat</a>
     </div>
 </div>
-
-<!-- ═══ VIDEO TESTIMONIALS ═══ -->
-<section class="section" id="videos">
-    <div class="container">
-        <div class="text-center blur-in">
-            <p class="section__label">Student Stories</p>
-            <h2 class="section__title">Hear it from ISB admits. In their own words.</h2>
-        </div>
-        <div class="video-grid fade-up stagger-children">
-            <div class="vid-card"><div class="vid-card__thumb" data-video="yMMoKcX_Ni8"><img src="https://img.youtube.com/vi/yMMoKcX_Ni8/hqdefault.jpg" alt="Soham Sengupta" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Soham Sengupta <span class="vid-card__score">780</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
-            <div class="vid-card"><div class="vid-card__thumb" data-video="18TL_foDxRg"><img src="https://img.youtube.com/vi/18TL_foDxRg/hqdefault.jpg" alt="Harssh Agarwaal" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Harssh Agarwaal <span class="vid-card__score">740</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
-            <div class="vid-card"><div class="vid-card__thumb" data-video="I7W96DIBV6c"><img src="https://img.youtube.com/vi/I7W96DIBV6c/hqdefault.jpg" alt="Shiban Hassan" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Shiban Hassan Quasmi <span class="vid-card__score">705</span></p><p class="vid-card__meta">ISB + 50% Scholarship</p></div></div>
-            <div class="vid-card"><div class="vid-card__thumb" data-video="MTVHtpxW13Y"><img src="https://img.youtube.com/vi/MTVHtpxW13Y/hqdefault.jpg" alt="Mayank Tripathy" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Mayank Tripathy <span class="vid-card__score">740</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
-            <div class="vid-card"><div class="vid-card__thumb" data-video="A_vO6JFwCd0"><img src="https://img.youtube.com/vi/A_vO6JFwCd0/hqdefault.jpg" alt="Mani Venkat" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Mani Venkat Chintha <span class="vid-card__score">675</span></p><p class="vid-card__meta">ISB YLP Admit</p></div></div>
-            <div class="vid-card"><div class="vid-card__thumb" data-video="dYHVULxg614"><img src="https://img.youtube.com/vi/dYHVULxg614/hqdefault.jpg" alt="Manan Jain" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Manan Jain <span class="vid-card__score">760</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
-        </div>
-    </div>
-</section>
-<div class="modal" id="vModal"><div class="modal__inner"><button class="modal__close" id="closeModal">&times;</button><iframe id="vFrame" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
 
 <!-- ═══ REGISTRATION MODAL ═══ -->
 <div class="reg-modal" id="regModal">
@@ -2778,6 +2760,13 @@
                         <span class="reg-modal__input-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
                     </div>
                     <div class="reg-modal__error" id="regPhoneErr">Please enter your phone number</div>
+                </div>
+                <div class="reg-modal__field">
+                    <label for="regQuestion">Your question for ISB</label>
+                    <div class="reg-modal__input-wrap">
+                        <textarea id="regQuestion" name="question" placeholder="e.g. What's the ideal profile for ISB admission?" rows="2" style="resize:vertical;font-family:inherit;"></textarea>
+                        <span class="reg-modal__input-icon" style="align-self:flex-start;margin-top:12px;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+                    </div>
                 </div>
                 <button type="submit" class="reg-modal__submit">Reserve My Seat</button>
                 <div class="reg-modal__trust">
@@ -2852,21 +2841,24 @@
         </div>
 </section>
 
-<!-- ═══ WHO SHOULD ATTEND ═══ -->
-<section class="section" id="audience">
+<!-- ═══ VIDEO TESTIMONIALS ═══ -->
+<section class="section" id="videos">
     <div class="container">
         <div class="text-center blur-in">
-            <p class="section__label">Who Should Attend</p>
-            <h2 class="section__title">Who Should Attend?</h2>
+            <p class="section__label">Student Stories</p>
+            <h2 class="section__title">Hear it from ISB admits. In their own words.</h2>
         </div>
-        <div class="audience__grid slide-left stagger-children">
-            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Final year undergrads targeting ISB</div></div>
-            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Young professionals (0&ndash;5 years experience)</div></div>
-            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Consultants, Analysts, Founders</div></div>
-            <div class="audience__item"><div class="audience__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="audience__label">Anyone who refuses average</div></div>
+        <div class="video-grid fade-up stagger-children">
+            <div class="vid-card"><div class="vid-card__thumb" data-video="yMMoKcX_Ni8"><img src="https://img.youtube.com/vi/yMMoKcX_Ni8/hqdefault.jpg" alt="Soham Sengupta" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Soham Sengupta <span class="vid-card__score">780</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
+            <div class="vid-card"><div class="vid-card__thumb" data-video="18TL_foDxRg"><img src="https://img.youtube.com/vi/18TL_foDxRg/hqdefault.jpg" alt="Harssh Agarwaal" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Harssh Agarwaal <span class="vid-card__score">740</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
+            <div class="vid-card"><div class="vid-card__thumb" data-video="I7W96DIBV6c"><img src="https://img.youtube.com/vi/I7W96DIBV6c/hqdefault.jpg" alt="Shiban Hassan" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Shiban Hassan Quasmi <span class="vid-card__score">705</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
+            <div class="vid-card"><div class="vid-card__thumb" data-video="MTVHtpxW13Y"><img src="https://img.youtube.com/vi/MTVHtpxW13Y/hqdefault.jpg" alt="Mayank Tripathy" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Mayank Tripathy <span class="vid-card__score">740</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
+            <div class="vid-card"><div class="vid-card__thumb" data-video="A_vO6JFwCd0"><img src="https://img.youtube.com/vi/A_vO6JFwCd0/hqdefault.jpg" alt="Mani Venkat" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Mani Venkat Chintha <span class="vid-card__score">675</span></p><p class="vid-card__meta">ISB YLP Admit</p></div></div>
+            <div class="vid-card"><div class="vid-card__thumb" data-video="dYHVULxg614"><img src="https://img.youtube.com/vi/dYHVULxg614/hqdefault.jpg" alt="Manan Jain" loading="lazy"><div class="vid-card__play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="vid-card__info"><p class="vid-card__name">Manan Jain <span class="vid-card__score">760</span></p><p class="vid-card__meta">ISB Admit</p></div></div>
         </div>
     </div>
 </section>
+<div class="modal" id="vModal"><div class="modal__inner"><button class="modal__close" id="closeModal">&times;</button><iframe id="vFrame" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
 
 <!-- ═══ FAQ ═══ -->
 <section class="section section--cream" id="faq">
@@ -2895,7 +2887,7 @@
             <!-- Seats badge before final CTA -->
             <div class="seats-badge">
                 <span class="seats-badge__dot"></span>
-                <span><strong id="finalSeats">127</strong> seats remaining - filling fast</span>
+                <span><strong id="finalSeats">653</strong> seats remaining - filling fast</span>
             </div>
 
             <a href="#register" class="btn btn--white btn--large btn--pulse" data-reg>Reserve My Seat</a>
@@ -2919,7 +2911,7 @@
 <!-- ═══ DESKTOP STICKY CTA ═══ -->
 <div class="sticky-desktop" id="stickyDesktop">
     <div class="sticky-desktop__inner">
-        <div class="sticky-desktop__seats"><strong id="stickySeats">127</strong> seats left</div>
+        <div class="sticky-desktop__seats"><strong id="stickySeats">653</strong> seats left</div>
         <a href="#register" class="btn btn--white" style="padding:10px 24px;white-space:nowrap;" data-reg>Reserve My Seat</a>
     </div>
 </div>
